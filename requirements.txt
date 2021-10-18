@@ -1,6 +1,4 @@
 modern_robotics
-
-
 numpy-quaternion
 numpy
 pandas

@@ -57,13 +57,38 @@ Now run the install script that will download ROS Melodic and set up your system
 cd unity_ros_setup
 ./1_base_setup.sh
 ```
-The following script will then install everything required to simulate and control the robot arm
+
+Back in windows, we need to run an X-Server to be able to display graphical output from ubuntu programs. For this download from here:
+https://sourceforge.net/projects/vcxsrv/
+
+Then refer to this tutorial for the settings https://jack-kawell.com/2020/06/12/ros-wsl2/.
+Alternatively just create a shortcut on your desktop the the config.xlaunch file located in this package, starting XLaunch via this will automatically set it up correctly. Don't forget to start XLaunch, otherwise graphical Ubuntu programs might hang up.
+
+- At this point you can test if everything worked correctly by opening a new terminal in wsl (should source your ros workspace) and typing rviz which should bring up a graphical ros program.
+
+# Interbotix Setup
+
+Install the required packages to simulate and control the robot arm
 
 ```shell
 cd unity_ros_setup
 ./2_interbotix_setup.sh
 ```
 
+# Unity Setup
+
+First follow the general instructions in the pdf found in the ressources folder. 
+
+Then download the following two repos (in windows, I just did it as a zip folder)
+https://github.com/Unity-Technologies/URDF-Importer
+https://github.com/Unity-Technologies/ROS-TCP-Connector
+
+Extract them if you downloaded them as a zip folder.
+Then open your unity project. 
+Click on Window -> Package Manager. Click + in upper corner. Add from disk. Navigate to the extracted zip folder
+In URDF Import find the com.unity.robotics.urdf-importer folder and select the package.json file within. Click on import. 
+
+Then do the same thing for the ROS-TCP-CONNECTOR where you need to find the com.unity.robotics.ros-tcp-connector folder and select the package.json file within. Again click on import.
 
 
 
