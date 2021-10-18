@@ -1,0 +1,11 @@
+modern_robotics
+
+
+numpy-quaternion
+numpy
+pandas
+jinja2
+pyserial
+pyyaml
+future
+setuptools
