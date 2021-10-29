@@ -219,8 +219,14 @@ In the Robot field select the object for which you want to publish the pose - in
 ```shell
 echo "ROS_IP: $ROS_IP" > ~/catkin_ws/src/ROS-TCP-Endpoint/config/params.yaml
 ```
-
 > Note: You may need to modify this file if the IP address of your ROS machine changes
+
+Because I don't want to have to do this every time I restart WSL, I added the following two lines to the ```/usr/home/.bashrc``` 
+
+```shell
+string="ROS_IP: $ROS_IP"
+sed -i "1s/.*/$string/" ~/catkin_ws/src/ROS-TCP-Endpoint/config/params.yaml
+```
 
 - Now you're able to start the ```ros_tcp_endpoint``` via its launch file:
 
@@ -243,3 +249,4 @@ rostopic echo /unity/wrist_position
 - If you want to continously pass the position from Unity to Ros you can also remove the button and rename the ```Publish()``` function in the ```GenericPublisher.cs``` script to ```Update()```. Functions with this name are called in Unity on every update, hence the ROS message will be continously be sent over to your ROS machine. 
 
 > Note: You can check the framerate with ```rostopic hz /unity/writst_position``` 
+
