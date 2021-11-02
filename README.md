@@ -34,6 +34,12 @@ Step by step guide on getting a ros environment on your windows machine, which i
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0" >> ~/.bashrc
 ```
 
+Back in windows, we need to run an X-Server to be able to display graphical output from ubuntu programs. For this download from here:
+https://sourceforge.net/projects/vcxsrv/
+
+Then refer to this tutorial for the settings https://jack-kawell.com/2020/06/12/ros-wsl2/.
+Alternatively just create a shortcut on your desktop the the config.xlaunch file located in this package, starting XLaunch via this will automatically set it up correctly. Don't forget to start XLaunch, otherwise graphical Ubuntu programs might hang up.
+
 ## Basic Install / Setup
 - Get some basic dependencies:
 
@@ -78,13 +84,8 @@ Now run the install script that will download ROS Melodic and set up your system
 cd unity_ros_setup
 ./1_base_setup.sh
 ```
-Back in windows, we need to run an X-Server to be able to display graphical output from ubuntu programs. For this download from here:
-https://sourceforge.net/projects/vcxsrv/
 
-Then refer to this tutorial for the settings https://jack-kawell.com/2020/06/12/ros-wsl2/.
-Alternatively just create a shortcut on your desktop the the config.xlaunch file located in this package, starting XLaunch via this will automatically set it up correctly. Don't forget to start XLaunch, otherwise graphical Ubuntu programs might hang up.
-
-- At this point you can test if everything worked correctly by opening a new terminal in wsl (should source your ros workspace) and typing rviz which should bring up a graphical ros program.
+- At this point you can test if everything worked correctly by opening a new terminal in ubuntu (should source your ros workspace) and typing rviz which should bring up a graphical ros program.
 
 # Interbotix Setup
 
