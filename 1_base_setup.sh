@@ -3,7 +3,7 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd
-# Ros noetic installation and catkin setup
+# Ros melodic installation and catkin setup
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
@@ -36,12 +36,11 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 catkin init
 catkin config --merge-devel
-catkin config --extend /opt/ros/noetic
+catkin config --extend /opt/ros/melodic
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 cd ~/catkin_ws/src
 git clone git@github.com:catkin/catkin_simple.git
-git clone git@github.com:ethz-asl/eigen_catkin.git
 
 catkin build -c
 source ~/catkin_ws/devel/setup.bash
@@ -53,10 +52,6 @@ fi
 if ! grep -Fxq "source /opt/ros/melodic/setup.bash" ~/.bashrc; then
 	# add to beginning of file (before catkin workspace sourcing!)
 	echo "source /opt/ros/melodic/setup.bash" | cat - ~/.bashrc > temp && mv temp ~/.bashrc
-fi
-if ! grep -Fxq "export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0" ~/.bashrc; then
-	# for display forwarding though X11, add to end of file 
-    echo "export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0" >> ~/.bashrc
 fi
 
 xargs -d '\n' -- sudo apt install -y < $BASEDIR/base_packages.txt

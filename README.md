@@ -4,6 +4,20 @@ Step by step guide on getting a ros environment on your windows machine, which i
 
 ## linux and ros setup
 
+### virtual machine (recommended)
+- Download Ubuntu 18 from here: https://releases.ubuntu.com/18.04/ubuntu-18.04.6-desktop-amd64.iso
+
+- Make a request on the itshop (https://itshop.ethz.ch/EndUser/ServiceCatalog) for the VMware Academic Program. Once the request was accepted naviagte over to https://e5.onthehub.com/WebStore/Welcome.aspx?ws=7dc259a3-7c6c-e111-a407-f04da23e67f6 and login in the top right corner. 
+
+- From the list of products select the VMware Workstation 16.0 and add it to your cart. Then proceed to checkout and download it. Copy the Serial Number that it displayed at the end - this is the license key.
+
+- Install vmware workstation by clicking the ```.exe``` and following the install instructions then open it.
+
+- Select ```Create a new virtual machine```-> ```Typical``` -> ```Installer Disk Image File``` (select the ubuntu .iso you just downloaded)
+- Set up the machine as you like, but choose at least ```60GB``` of space, on the last page click ```Customize Hardware```, navigate to ```Network Adapter``` and choose ```Bridged: Connect directly to the physical network``` and tick the option ```Replicate physical network connection state```
+- Then click on ```Close``` and ```Finish``` and let vmware set up your virtual machine.
+
+### wsl if not using virtual machine (not recommended)
 - Install wsl by opening the cmd promtp (just search for cmd) and run:
     wsl --install -d Ubuntu-18.04
 
@@ -14,6 +28,13 @@ Step by step guide on getting a ros environment on your windows machine, which i
 
 - Restart Windows terminal and you are greeted with (the familiar) ubuntu terminal. 
 
+- Add the following line at the end of ```~/.bashrc``` to enable display forwarding:
+
+```shell
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0" >> ~/.bashrc
+```
+
+## Basic Install / Setup
 - Get some basic dependencies:
 
 ```shell

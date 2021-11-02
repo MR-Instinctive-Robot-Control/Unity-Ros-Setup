@@ -28,13 +28,6 @@ git checkout 2.3.1
 catkin build realsense_ros
 source ~/catkin_ws/devel/setup.bash
 
-echo "Installing Apriltag ROS Wrapper..."
-cd ~/catkin_ws/src
-git clone https://github.com/AprilRobotics/apriltag.git
-git clone https://github.com/AprilRobotics/apriltag_ros.git
-cd ~/catkin_ws
-rosdep install --from-paths src --ignore-src -r -y
-
 catkin build 
 source ~/catkin_ws/devel/setup.bash
 
@@ -46,8 +39,6 @@ git clone https://github.com/Interbotix/interbotix_ros_toolboxes.git
 cd interbotix_ros_manipulators && git checkout melodic && cd ..
 rm interbotix_ros_core/interbotix_ros_xseries/CATKIN_IGNORE
 rm interbotix_ros_manipulators/interbotix_ros_xsarms/CATKIN_IGNORE
-rm interbotix_ros_manipulators/interbotix_ros_xsarms/interbotix_xsarm_perception/CATKIN_IGNORE
-rm interbotix_ros_toolboxes/interbotix_perception_toolbox/CATKIN_IGNORE
 rm interbotix_ros_toolboxes/interbotix_xs_toolbox/CATKIN_IGNORE
 rm interbotix_ros_toolboxes/interbotix_common_toolbox/interbotix_moveit_interface/CATKIN_IGNORE
 cd interbotix_ros_core/interbotix_ros_xseries/interbotix_xs_sdk
