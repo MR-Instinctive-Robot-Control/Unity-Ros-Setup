@@ -1,5 +1,5 @@
 # Mixed Reality Group Only
-- If you do not have git installed, install git for Windows first (https://git-scm.com/download/win)
+- If you do not have git installed, install git for Windows first (https://git-scm.com/download/win), ```restart``` after installing git
 
 - Open Unity hub - if you have been added to the project via collaborate (ask jonny to add you)(sign in to collaborate here: https://dashboard.unity3d.com) - you should see the Human Robot Manipulator in you projects. If you open it it will download all the Assets and Packages for the Project. 
 
