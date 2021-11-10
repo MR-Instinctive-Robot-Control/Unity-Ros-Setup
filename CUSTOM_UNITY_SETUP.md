@@ -18,4 +18,4 @@
 
 - Navigate to Packages/URDF Importer/Runtime and do the same for the ```.asmdef``` there
 
-- You're all set
+- Open the scene from Assets/Scenes and double click on MainScene to open it. 
