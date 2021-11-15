@@ -19,9 +19,9 @@ catkin build cube_tracking
 - Follow the installation steps at the following link (under the section **Installing the packages**): https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md
 
 - Once followed the previous steps, by running
-'''shell
+```shell
 realsense-viewer
-'''
+```
 a window should appear displaying the RGB and depth camera streams.
 
 ## Installing requirements for the OpenCV module
