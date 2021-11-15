@@ -19,3 +19,21 @@
 - Navigate to Packages/URDF Importer/Runtime and do the same for the ```.asmdef``` there
 
 - Open the scene from Assets/Scenes and double click on MainScene to open it. 
+
+# How to start the Robot-HL2 Communication
+
+Open up two terminals in your VMware Ubuntu 18.04 virtual machine:
+1. Terminal:  
+    roslaunch interbotix_xsarm_moveit_interface xsarm_moveit_interface.launch robot_model:=wx250s dof:=6 use_cpp_interface:=true **use_gazebo:=true**
+    moveit_interface_gui:=false  
+    Or if you want to use the actual robot:  
+    roslaunch interbotix_xsarm_moveit_interface xsarm_moveit_interface.launch robot_model:=wx250s dof:=6 use_cpp_interface:=true **use_actual:=true**
+moveit_interface_gui:=false
+2. Terminal:  
+    rosservice call /gazebo/unpause_physics  
+    Then  
+    roslaunch ros_tcp_endpoint endpoint.launch
+
+If you want to use the actual robot instead of the gazebo version you have to change the first command slightly:
+roslaunch interbotix_xsarm_moveit_interface xsarm_moveit_interface.launch robot_model:=wx250s dof:=6 use_cpp_interface:=true **use_actual:=true**
+moveit_interface_gui:=false 
