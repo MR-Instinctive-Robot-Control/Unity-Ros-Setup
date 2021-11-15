@@ -22,6 +22,8 @@
 
 # How to start the Robot-HL2 Communication
 
+If you experience issues with the robot not moving to a desired pose, try changing the kinematics solver in ```~/catkin_ws/src/interbotix_ros_manipulators/interbotix_ros_xsarms/interbotix_xsarm_moveit/config/kinematics.yaml```. Comment aus the default and uncomment the TRAC_IK section.
+
 Open up two terminals in your VMware Ubuntu 18.04 virtual machine:
 1. Terminal:  
     roslaunch interbotix_xsarm_moveit_interface xsarm_moveit_interface.launch robot_model:=wx250s dof:=6 use_cpp_interface:=true **use_gazebo:=true**
