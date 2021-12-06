@@ -20,9 +20,42 @@
 
 - Open the scene from Assets/Scenes and double click on MainScene to open it. 
 
-# How to start the Robot-HL2 Communication
+- If you are using a trajectory controller, we found that using the default kinematics solver often resulted in no feasible trajectories being found. This was solved by changing the kinematics solver, to do so, follow these steps:
 
-If you experience issues with the robot not moving to a desired pose, try changing the kinematics solver in ```~/catkin_ws/src/interbotix_ros_manipulators/interbotix_ros_xsarms/interbotix_xsarm_moveit/config/kinematics.yaml```. Comment aus the default and uncomment the TRAC_IK section.
+    1. ```sudo apt install ros-melodic-trac-ik-kinematics-plugin```
+    2. Navigate to and open the file: in ```~\catkin_ws\src\interbotix_ros_manipulators\interbotix_ros_xsarms\interbotix_xsarm_moveit\config\kinematics.yaml```
+    3. Change the content to the following
+
+```xml
+# position-only-ik and orientation-only-ik don't work unless position_only_ik
+# is set to true for the KDL and trac_ik plugins
+
+# interbotix_arm:
+#   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.005
+#   position_only_ik: true
+
+interbotix_arm:
+  kinematics_solver: trac_ik_kinematics_plugin/TRAC_IKKinematicsPlugin
+  kinematics_solver_timeout: 0.005
+  solve_type: Speed
+  position_only_ik: true
+
+# Position-only-ik and orientation-only-ik work automatically for the LMA plugin
+
+# interbotix_arm:
+#   kinematics_solver: lma_kinematics_plugin/LMAKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.005
+```
+
+- For using our custom smooth hand following controller you need to install scipy in ubuntu:
+```shell 
+pip install scipy
+```
+
+# How to start the Robot-HL2 Communication with a trajectory controller
 
 Open up two terminals in your VMware Ubuntu 18.04 virtual machine:
 1. Terminal:  
@@ -35,3 +68,15 @@ moveit_interface_gui:=false
     rosservice call /gazebo/unpause_physics  
     Then  
     roslaunch ros_tcp_endpoint endpoint.launch
+
+# How to start smooth position controller
+
+1. Clone the MR Instincive Robot Control Repo into your ubuntu catkin_ws:
+```git clone git@gitlab.ethz.ch:mr-instinctive-robot/mr-instinctive-robot-control.git```
+
+2. Build it and source it
+``catkin build interbotix_hand_joy && source ~/catkin_ws/devel/setup.bash```
+
+3. In two terminals launch (use sim:=true if not on real robot, otherwise default is sim=false):
+    - ```roslaunch interbotix_hand_joy hand_joy.launch robot_model:=wx250s use_sim:=true```
+    - ```roslaunch ros_tcp_endpoint endpoint.launch```
