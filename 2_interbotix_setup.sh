@@ -47,5 +47,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 cd ~/catkin_ws
 rosdep install --from-paths src --ignore-src -r -y
 
+sudo apt -y install ros-melodic-trac-ik-kinematics-plugin
+
 catkin build -c
 source ~/catkin_ws/devel/setup.bash
