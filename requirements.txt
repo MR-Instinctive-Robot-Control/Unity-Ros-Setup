@@ -8,3 +8,4 @@ pyserial
 pyyaml
 future
 setuptools
+scipy
