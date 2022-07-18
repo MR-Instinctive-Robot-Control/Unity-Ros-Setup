@@ -5,15 +5,18 @@ Step by step guide to run a cube pose estimation ROS node via a RealSense depth 
 ## ROS setup
 
 ### importing the node in the catkin workspace
-- Download the *cube_tracking.zip* from here: https://gitlab.ethz.ch/mr-instinctive-robot/aruco-markers-and-unity-holograms/-/tree/ivan_Holograms_creation
+- On the ubunutu machine navigate to your catkin workspace source folder (e.g. ```~/catkin_ws/src```)
 
-- Unzip the folder and copy it in /home/username/catkin_ws/src/
+- Clone the cube tracking ros package:
+
+```shell
+git clone git@github.com:MR-Instinctive-Robot-Control/Cube-Tracking-Ros.git
+```
 
 - Run the following command to build the package:
 ```shell
 catkin build cube_tracking
 ```
-
 
 ### Install RealSense dependencies
 - Follow the installation steps at the following link (under the section **Installing the packages**): https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md
@@ -35,11 +38,9 @@ pip install opencv-python==4.2.0.32
 pip install opencv-contrib-python
 ```
 
-
 ```shell
 pip install scipy
 ```
-
 
 # Running the  ROS node
 To run the ROS cube tracking node, run the following commands.
